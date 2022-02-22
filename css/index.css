@@ -38,17 +38,11 @@ img {
   font-size: 1.5vh;
 }
 
-#results-list{
-  list-style:disc;
-  list-style-position: inside;
-  background-color: #81A851;
-  width: max-content;
-  height: max-content;
+#results-chart{
+  width: 70%;
+  height: 40%;
   margin: auto;
+  margin-left: 15%;
+  margin-right: 15%;
   margin-top: 5vh;
-  font-size: 1.5vh;
-}
-
-li {
-  padding-top: .5vh;
 }
