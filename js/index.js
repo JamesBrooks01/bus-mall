@@ -1,7 +1,7 @@
 'use strict';
 
 // Variables
-let clicksAllowed = 10;
+let clicksAllowed = 25;
 let allProducts = [];
 
 // DOM Windows
