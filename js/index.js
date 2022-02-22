@@ -42,7 +42,6 @@ new Product('unicorn');
 new Product('water-can');
 new Product('wine-glass');
 
-// console.log(allProducts);
 
 // Other Code
 
@@ -50,47 +49,19 @@ function randomIndexNum() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-// function renderProducts() {
-//   let imagesArray = [];
-//   imagesArray[0] = randomIndexNum();
-//   imagesArray[1] = randomIndexNum();
-//   imagesArray[2] = randomIndexNum();
-//   // console.log(imagesArray);
-//   while (imagesArray[1] === imagesArray[0]) {
-//     imagesArray[1] = randomIndexNum();
-//   }
-//   while (imagesArray[2] === imagesArray[1] || imagesArray[2] === imagesArray[0]) {
-//     imagesArray[2] = randomIndexNum();
-//   }
-//   imgOne.src = allProducts[imagesArray[0]].src;
-//   imgOne.alt = allProducts[imagesArray[0]].name;
-//   allProducts[imagesArray[0]].numViews++;
-//   imgTwo.src = allProducts[imagesArray[1]].src;
-//   imgTwo.alt = allProducts[imagesArray[1]].name;
-//   allProducts[imagesArray[1]].numViews++;
-//   imgThree.src = allProducts[imagesArray[2]].src;
-//   imgThree.alt = allProducts[imagesArray[2]].name;
-//   allProducts[imagesArray[2]].numViews++;
-// }
-
 let allItems = [];
-// let counter = 1;
 function renderContainerProducts() {
   let randomIndexes = [];
-  // console.log('allItems', allItems);
   while (randomIndexes.length < 3) {
     let randoNum = randomIndexNum();
     if (!randomIndexes.includes(randoNum) && !allItems.includes(randoNum)) {
       randomIndexes.push(randoNum);
     }
   }
-  // allItems.push(randomIndexes);
   allItems.splice(0, 3, ...randomIndexes);
-  // console.table('randomIndexes', randomIndexes);
   let itemOne = randomIndexes.pop();
   let itemTwo = randomIndexes.pop();
   let itemThree = randomIndexes.pop();
-  // console.log(itemOne, itemTwo, itemThree);
   imgOne.src = allProducts[itemOne].src;
   imgOne.alt = allProducts[itemOne].name;
   allProducts[itemOne].numViews++;
@@ -141,7 +112,6 @@ function renderResultsChart() {
     productViews.push(allProducts[i].numViews);
     productClicks.push(allProducts[i].numCLicks);
   }
-  console.log(`Name = ${productName}, Views = ${productViews}, Clicks = ${productClicks}` );
 
   let chartObject = {
     type: 'bar',
