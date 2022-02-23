@@ -13,6 +13,12 @@ let resultsButton = document.getElementById('results-button');
 const ctx = document.getElementById('results-chart').getContext('2d');
 let chartWindow = document.getElementById('results-chart');
 
+// localStorage Retrieval
+let savedProducts = localStorage.getItem('products');
+console.log('Saved Products', savedProducts);
+let parsedData = JSON.parse(savedProducts);
+console.log('Parsed Data', parsedData);
+
 // Constructor
 function Product(name, fileExtension = 'jpg') {
   this.name = name;
@@ -21,27 +27,30 @@ function Product(name, fileExtension = 'jpg') {
   this.src = `img/${name}.${fileExtension}`;
   allProducts.push(this);
 }
-
-new Product('bag');
-new Product('banana');
-new Product('bathroom');
-new Product('boots');
-new Product('breakfast');
-new Product('bubblegum');
-new Product('chair');
-new Product('cthulhu');
-new Product('dog-duck');
-new Product('dragon');
-new Product('pen');
-new Product('pet-sweep');
-new Product('scissors');
-new Product('shark');
-new Product('sweep', 'png');
-new Product('tauntaun');
-new Product('unicorn');
-new Product('water-can');
-new Product('wine-glass');
-
+if (savedProducts) {
+  allProducts = parsedData;
+} else {
+  new Product('bag');
+  new Product('banana');
+  new Product('bathroom');
+  new Product('boots');
+  new Product('breakfast');
+  new Product('bubblegum');
+  new Product('chair');
+  new Product('cthulhu');
+  new Product('dog-duck');
+  new Product('dragon');
+  new Product('pen');
+  new Product('pet-sweep');
+  new Product('scissors');
+  new Product('shark');
+  new Product('sweep', 'png');
+  new Product('tauntaun');
+  new Product('unicorn');
+  new Product('water-can');
+  new Product('wine-glass');
+}
+console.log(allProducts);
 
 // Other Code
 
@@ -95,6 +104,9 @@ function handleResultsButton(event) {
   if (clicksAllowed === 0) {
     renderResultsChart();
     chartWindow.style.backgroundColor = '#81A851';
+    let localStoredProducts = JSON.stringify(allProducts);
+    console.log('Stringed Products', localStoredProducts);
+    localStorage.setItem('products', localStoredProducts);
   }
 }
 
@@ -107,7 +119,7 @@ function renderResultsChart() {
   let productViews = [];
   let productClicks = [];
 
-  for(let i = 0; i < allProducts.length; i++){
+  for (let i = 0; i < allProducts.length; i++) {
     productName.push(allProducts[i].name);
     productViews.push(allProducts[i].numViews);
     productClicks.push(allProducts[i].numCLicks);
