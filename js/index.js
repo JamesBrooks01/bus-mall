@@ -15,9 +15,7 @@ let chartWindow = document.getElementById('results-chart');
 
 // localStorage Retrieval
 let savedProducts = localStorage.getItem('products');
-console.log('Saved Products', savedProducts);
 let parsedData = JSON.parse(savedProducts);
-console.log('Parsed Data', parsedData);
 
 // Constructor
 function Product(name, fileExtension = 'jpg') {
@@ -50,7 +48,6 @@ if (savedProducts) {
   new Product('water-can');
   new Product('wine-glass');
 }
-console.log(allProducts);
 
 // Other Code
 
@@ -105,7 +102,6 @@ function handleResultsButton(event) {
     renderResultsChart();
     chartWindow.style.backgroundColor = '#81A851';
     let localStoredProducts = JSON.stringify(allProducts);
-    console.log('Stringed Products', localStoredProducts);
     localStorage.setItem('products', localStoredProducts);
   }
 }
