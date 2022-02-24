@@ -55,16 +55,16 @@ function randomIndexNum() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-// let allItems = [];
+let allItems = [];
 function renderContainerProducts() {
   let randomIndexes = [];
   while (randomIndexes.length < imgNum) {
     let randoNum = randomIndexNum();
-    if (!randomIndexes.includes(randoNum)) {
+    if (!randomIndexes.includes(randoNum) && !allItems.includes(randoNum)) {
       randomIndexes.push(randoNum);
     }
   }
-  // allItems.splice(0, imgNum, ...randomIndexes);
+  allItems.splice(0, imgNum, ...randomIndexes);
   for (let i = 0; i < imgNum; i++) {
     let imgCounter = randomIndexes.pop();
     let img = document.createElement('img');
