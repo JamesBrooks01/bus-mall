@@ -3,12 +3,11 @@
 // Variables
 let clicksAllowed = 25;
 let allProducts = [];
+let imgNum = 0;
 
 // DOM Windows
 let imageContainer = document.getElementById('bus-images');
-let imgOne = document.getElementById('img-one');
-let imgTwo = document.getElementById('img-two');
-let imgThree = document.getElementById('img-three');
+let imageClass = document.getElementsByClassName('images');
 let resultsButton = document.getElementById('results-button');
 const ctx = document.getElementById('results-chart').getContext('2d');
 let chartWindow = document.getElementById('results-chart');
@@ -55,33 +54,33 @@ function randomIndexNum() {
   return Math.floor(Math.random() * allProducts.length);
 }
 
-let allItems = [];
+// let allItems = [];
 function renderContainerProducts() {
   let randomIndexes = [];
-  while (randomIndexes.length < 3) {
+  while (randomIndexes.length < imgNum) {
     let randoNum = randomIndexNum();
-    if (!randomIndexes.includes(randoNum) && !allItems.includes(randoNum)) {
+    if (!randomIndexes.includes(randoNum)) {
       randomIndexes.push(randoNum);
     }
   }
-  allItems.splice(0, 3, ...randomIndexes);
-  let itemOne = randomIndexes.pop();
-  let itemTwo = randomIndexes.pop();
-  let itemThree = randomIndexes.pop();
-  imgOne.src = allProducts[itemOne].src;
-  imgOne.alt = allProducts[itemOne].name;
-  allProducts[itemOne].numViews++;
-  imgTwo.src = allProducts[itemTwo].src;
-  imgTwo.alt = allProducts[itemTwo].name;
-  allProducts[itemTwo].numViews++;
-  imgThree.src = allProducts[itemThree].src;
-  imgThree.alt = allProducts[itemThree].name;
-  allProducts[itemThree].numViews++;
+  // allItems.splice(0, imgNum, ...randomIndexes);
+  for(let i = 0; i < imgNum; i++) {
+    let imgCounter = randomIndexes.pop();
+    let img = document.createElement('img');
+    img.classList.add('images');
+    img.src = allProducts[imgCounter].src;
+    img.alt = allProducts[imgCounter].name;
+    allProducts[imgCounter].numViews++;
+    imageContainer.appendChild(img);
+  }
 }
 
 renderContainerProducts();
 
 function handleClick(event) {
+  for(let i = 0; i < imgNum; i++) {
+    imageClass[0].parentNode.removeChild(imageClass[0]);
+  }
   clicksAllowed--;
   let productClicked = event.target.alt;
 
