@@ -12,11 +12,16 @@
 <body>
   <h1>BusMall</h1>
   <main>
-
+    <form id="imgNumForm">
+      <fieldset>
+        <div id="imgNum">
+          <label for="imgNum">How many Products Would You Like to View? (Default is 3)</label><br>
+          <input type="number" name="imgNum" id="imgNum" min="1" max="19">
+          <button type="submit">Submit Number</button>
+        </div>
+      </fieldset>
+    </form>
     <section id="bus-images">
-      <img id="img-one" src="" alt="">
-      <img id="img-two" src="" alt="">
-      <img id="img-three" src="" alt="">
     </section>
 
     <div id="results-button">View Results</div>
