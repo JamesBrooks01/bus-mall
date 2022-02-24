@@ -3,7 +3,7 @@
 // Variables
 let clicksAllowed = 25;
 let allProducts = [];
-let imgNum = 0;
+let imgNum = 3;
 
 // DOM Windows
 let imageContainer = document.getElementById('bus-images');
@@ -11,6 +11,7 @@ let imageClass = document.getElementsByClassName('images');
 let resultsButton = document.getElementById('results-button');
 const ctx = document.getElementById('results-chart').getContext('2d');
 let chartWindow = document.getElementById('results-chart');
+let imgForm = document.getElementById('imgNumForm');
 
 // localStorage Retrieval
 let savedProducts = localStorage.getItem('products');
@@ -64,7 +65,7 @@ function renderContainerProducts() {
     }
   }
   // allItems.splice(0, imgNum, ...randomIndexes);
-  for(let i = 0; i < imgNum; i++) {
+  for (let i = 0; i < imgNum; i++) {
     let imgCounter = randomIndexes.pop();
     let img = document.createElement('img');
     img.classList.add('images');
@@ -78,7 +79,7 @@ function renderContainerProducts() {
 renderContainerProducts();
 
 function handleClick(event) {
-  for(let i = 0; i < imgNum; i++) {
+  for (let i = 0; i < imgNum; i++) {
     imageClass[0].parentNode.removeChild(imageClass[0]);
   }
   clicksAllowed--;
@@ -105,8 +106,20 @@ function handleResultsButton(event) {
   }
 }
 
+function handleSubmit(event) {
+  if (imgNum > 0) {
+    for (let i = 0; i < imgNum; i++) {
+      imageClass[0].parentNode.removeChild(imageClass[0]);
+    }
+  }
+  event.preventDefault();
+  imgNum = +event.target.imgNum.value;
+  renderContainerProducts();
+}
+
 imageContainer.addEventListener('click', handleClick);
 resultsButton.addEventListener('click', handleResultsButton);
+imgForm.addEventListener('submit', handleSubmit);
 
 
 function renderResultsChart() {
